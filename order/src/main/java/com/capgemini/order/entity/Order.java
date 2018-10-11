@@ -3,8 +3,7 @@ package com.capgemini.order.entity;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.Id;
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,23 +16,19 @@ public class Order {
 	@DateTimeFormat(pattern="dd-mm-yyyy")
 	private LocalDate date;
 	private int customerId;
+	private String status;
 	private Set<LineItem> items;
 	public Order() {
 		super();
 	}
-	public Order(int orderId, double totalPrice, LocalDate date, int customerId, Set<LineItem> items) {
+	public Order(int orderId, double totalPrice, LocalDate date, int customerId, String status, Set<LineItem> items) {
 		super();
 		this.orderId = orderId;
 		this.totalPrice = totalPrice;
 		this.date = date;
 		this.customerId = customerId;
+		this.status = status;
 		this.items = items;
-	}
-	
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", totalPrice=" + totalPrice + ", date=" + date + ", customerId="
-				+ customerId + ", items=" + items + "]";
 	}
 	public int getOrderId() {
 		return orderId;
@@ -59,14 +54,18 @@ public class Order {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Set<LineItem> getItems() {
 		return items;
 	}
 	public void setItems(Set<LineItem> items) {
 		this.items = items;
 	}
-	
-		
 	
 	
 }
